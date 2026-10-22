@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://adsun.io/adsun.min.js"></script>
+  <title>Adsun example</title>
+  <style>body{font-family:system-ui;padding:24px;max-width:420px;margin:auto}button{padding:14px 18px;font-size:16px;border-radius:12px;border:0;background:#2481cc;color:#fff;width:100%}</style>
+</head>
+<body>
+  <h1>Coins: <span id="coins">0</span></h1>
+  <button id="watch">Watch ad → +100 coins</button>
+<script>
+  const ad = window.Adsun.init({ blockId: "YOUR_BLOCK_ID", debug: true, debugConsole: true, debugBannerType: "RewardedVideo" });
+  let coins = 0;
+  document.getElementById("watch").onclick = () => {
+    ad.show()
+      .then(() => { coins += 100; document.getElementById("coins").textContent = coins; })
+      .catch((r) => console.log("No reward:", r.description));
+  };
+</script>
+</body>
+</html>
